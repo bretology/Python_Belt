@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+    <title>Pokes</title>
+  </head>
+  <body>
+    Welcome {{ session['alias'] }}!
+    {{ persons }} persons have poked you!
+    <br>
+    <a href="/logout">Logout</a>
+    <br>
+    {% if listed %}
+      {% for person in listed %}
+        {{ person['name'] }} poked you {{ person['pokes'] }} times!
+        <br>
+      {% endfor %}
+    {% endif %}
+    
+    <br>
+    People You May Want to Poke:
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Alias</th>
+        <th>email</th>
+        <th>pokes</th>
+        <th>Add Poke!</th>
+      </tr>
+    {% if all %}
+      {% for person in all %}
+      <tr>
+        <td>{{ person['name'] }}</td>
+        <td>{{ person['alias'] }}</td>
+        <td>{{ person['email'] }}</td>
+        <td>{{ person['pokes']}}</td>
+        <td><a href="/add_poke/{{ person['id'] }}">Poke!</a></td>
+        <br>
+      </tr>
+      {% endfor %}
+    {% endif %}
+    </table>
+  </body>
+</html>
